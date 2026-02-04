@@ -9,3 +9,4 @@ python-multipart==0.0.9
 pydantic[email]==2.9.2
 pydantic-settings==2.5.2
 alembic==1.13.3
+python-socketio[asyncio]==5.11.0

@@ -1,3 +1,3 @@
-from app.routers import auth, classroom
+from app.routers import auth, classroom, chat
 
-__all__ = ["auth", "classroom"]
+__all__ = ["auth", "classroom", "chat"]
