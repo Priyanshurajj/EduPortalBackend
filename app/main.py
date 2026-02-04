@@ -1,17 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
-import os
 
 from app.core.config import settings
 from app.database import Base, engine
-from app.routers import auth, classroom
+from app.routers import auth
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
-
-# Create uploads directory
-os.makedirs("uploads/materials", exist_ok=True)
 
 # Create FastAPI application
 app = FastAPI(
@@ -31,12 +26,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Mount static files for uploads
-app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
-
 # Include routers
 app.include_router(auth.router)
-app.include_router(classroom.router)
 
 
 @app.get("/", tags=["Health"])
