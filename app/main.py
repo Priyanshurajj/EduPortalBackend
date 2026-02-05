@@ -8,7 +8,7 @@ from app.core.config import settings
 from app.core.socketio_manager import sio
 # from app.core.socketio_manager import socket_app
 from app.database import Base, engine
-from app.routers import auth, classroom, chat
+from app.routers import auth, classroom, chat, ai
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
@@ -44,6 +44,7 @@ fastapi_app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 fastapi_app.include_router(auth.router)
 fastapi_app.include_router(classroom.router)
 fastapi_app.include_router(chat.router)
+fastapi_app.include_router(ai.router)
 
 
 @fastapi_app.get("/", tags=["Health"])

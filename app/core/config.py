@@ -1,5 +1,5 @@
 from pydantic_settings import BaseSettings
-from typing import List
+from typing import List, Optional
 
 
 class Settings(BaseSettings):
@@ -23,6 +23,15 @@ class Settings(BaseSettings):
         "http://127.0.0.1:8080",
         "http://10.0.2.2:8000",  # Android emulator
     ]
+    
+    # AI/RAG Configuration
+    GOOGLE_API_KEY: Optional[str] = "AIzaSyB5Pm9WtAxn__yq5Z4IJud_rkt32P_OEEI"
+    GEMINI_MODEL: str = "gemini-3-flash-preview"
+    EMBEDDING_MODEL: str = "models/embedding-001"
+    MAX_UPLOAD_SIZE_MB: int = 10
+    RAG_CHUNK_SIZE: int = 1000
+    RAG_CHUNK_OVERLAP: int = 200
+    RAG_TOP_K: int = 5
     
     class Config:
         env_file = ".env"
